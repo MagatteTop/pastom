@@ -1,7 +1,7 @@
 import { RouteInfo } from './sidebar.metadata';
 
 export const ROUTES: RouteInfo[] = [
-  {
+ /* {
     path: '',
     title: 'Home',
     icon: 'fas fa-tachometer-alt',
@@ -29,7 +29,7 @@ export const ROUTES: RouteInfo[] = [
         submenu: []
       }
     ]
-  },
+  },*/
   {
     path: '/tables/advance-table',
     title: 'Advance Table',
@@ -37,7 +37,7 @@ export const ROUTES: RouteInfo[] = [
     class: '',
     submenu: []
   },
-  {
+  /*{
     path: '/apps/calendar',
     title: 'Events',
     icon: 'far fa-calendar',
@@ -138,7 +138,7 @@ export const ROUTES: RouteInfo[] = [
       }
     ]
   },
-  {
+*/  {
     path: '',
     title: 'User Interface (UI)',
     icon: 'fas fa-drafting-compass',
@@ -358,7 +358,7 @@ export const ROUTES: RouteInfo[] = [
       }
     ]
   },
-  {
+  /*{
     path: '',
     title: 'Medias',
     icon: 'far fa-images',
@@ -481,7 +481,7 @@ export const ROUTES: RouteInfo[] = [
       }
     ]
   },
-  {
+*/  {
     path: '',
     title: 'Authentication',
     icon: 'fas fa-id-card',
@@ -574,7 +574,7 @@ export const ROUTES: RouteInfo[] = [
       }
     ]
   },
-  {
+  /*{
     path: '',
     title: 'Maps',
     icon: 'fas fa-globe-americas',
@@ -589,7 +589,7 @@ export const ROUTES: RouteInfo[] = [
       }
     ]
   },
-  {
+*/  {
     path: '',
     title: 'Multi level',
     icon: 'fas fa-angle-double-down',
