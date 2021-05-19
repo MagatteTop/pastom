@@ -1,7 +1,7 @@
 import { RouteInfo } from './sidebar.metadata';
 
 export const ROUTES: RouteInfo[] = [
- /* {
+  {
     path: '',
     title: 'Home',
     icon: 'fas fa-tachometer-alt',
@@ -29,7 +29,7 @@ export const ROUTES: RouteInfo[] = [
         submenu: []
       }
     ]
-  },*/
+  },
   {
     path: '/tables/advance-table',
     title: 'Advance Table',

@@ -8,6 +8,8 @@ import {
   HostListener
 } from '@angular/core';
 import { ROUTES } from './sidebar-items';
+import {AuthService} from "../../services/auth.service";
+import {Router} from "@angular/router";
 
 declare const Waves: any;
 
@@ -25,11 +27,20 @@ export class SidebarComponent implements OnInit {
   listMaxHeight: string;
   listMaxWidth: string;
   headerHeight = 60;
+  currentUrl: string;
+  showLoadingIndicatior = true;
+
   constructor(
+    public authService: AuthService,
+    private router: Router,
     @Inject(DOCUMENT) private document: Document,
     private renderer: Renderer2,
     public elementRef: ElementRef
   ) {}
+  onLogout(){
+    this.authService.logout();
+
+  }
   @HostListener('window:resize', ['$event'])
   windowResizecall(event) {
     this.setMenuHeight();
@@ -68,6 +79,14 @@ export class SidebarComponent implements OnInit {
     this.sidebarItems = ROUTES.filter(sidebarItem => sidebarItem);
     this.initLeftSidebar();
     this.bodyTag = this.document.body;
+    let isloggedin: string;
+    let loggedUser:string;
+    isloggedin = localStorage.getItem('isloggedIn');
+    loggedUser = localStorage.getItem('loggedUser');
+    if (isloggedin!=="true" || !loggedUser)
+      this.router.navigate(['/authentication/signin']);
+    else
+      this.authService.setLoggedUserFromLocalStorage(loggedUser);
   }
 
   initLeftSidebar() {

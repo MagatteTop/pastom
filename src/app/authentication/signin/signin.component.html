@@ -1,15 +1,15 @@
 <div class="limiter">
   <div class="container-login100">
     <div class="wrap-login100">
-      <form class="login100-form validate-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <form class="login100-form validate-form">
         <span class="login100-form-title pb-5">
           Login
         </span>
         <div class="row">
           <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
             <mat-form-field class="example-full-width" appearance="outline">
-              <mat-label>Username</mat-label>
-              <input matInput formControlName="username" />
+              <mat-label for="name">Username</mat-label>
+              <input matInput name="name" class="form-control"   [(ngModel)]="user.name"/>
               <mat-icon matSuffix>face</mat-icon>
             </mat-form-field>
           </div>
@@ -18,7 +18,7 @@
           <div class="col-xl-12col-lg-12 col-md-12 col-sm-12 mb-2">
             <mat-form-field class="example-full-width" appearance="outline">
               <mat-label>Password</mat-label>
-              <input matInput type="password" formControlName="password">
+              <input matInput type="password" name="password" class="form-control" [(ngModel)]="user.password"  />
               <mat-icon matSuffix>vpn_key</mat-icon>
             </mat-form-field>
           </div>
@@ -36,10 +36,12 @@
             <a class="txt1" routerLink="/authentication/forgot-password">Forgot Password?</a>
           </div>
         </div>
-        <div class="container-login100-form-btn">
-          <button mat-flat-button color="primary" class="login100-form-btn" type="submit">
-            Login
+        <div  routerLinkActive="active" class="container-login100-form-btn">
+          <button [disabled]="loading" mat-flat-button color="primary" type="button" class="login100-form-btn" (click)="onLoggedin()">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+            Connexion
           </button>
+          <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
         </div>
         <div class="text-center p-t-30 p-b-20">
           <span class="txt3">

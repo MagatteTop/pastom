@@ -1,0 +1,324 @@
+{
+	"info": {
+		"_postman_id": "540aac62-35e0-412c-8d40-19e7684b0ac5",
+		"name": "API_PAL",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "{{host}}api/auth/login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n      \"mobile\":\"v1\",\r\n    \"name\":\"coundia\",\r\n    \"password\":\"passer\",\r\n    \"email\":\"papa@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://www.pharmacie.palmadeco.com/api/auth/login",
+							"protocol": "http",
+							"host": [
+								"www",
+								"pharmacie",
+								"palmadeco",
+								"com"
+							],
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "{{host}}api/auth/login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n      \"mobile\":\"v1\",\r\n    \"name\":\"coundia\",\r\n    \"password\":\"passer\",\r\n    \"email\":\"papa@gmail.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}api/auth/login",
+									"host": [
+										"{{host}}api"
+									],
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 09 May 2021 12:09:31 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 09 May 2021 12:09:31 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.4.0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "58"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"success\",\n    \"user\": {\n        \"id\": 113,\n        \"name\": \"coundia\",\n        \"email\": \"papa@gmail.com\",\n        \"country_code\": \"91\",\n        \"mobile\": \"v1\",\n        \"dob\": null,\n        \"city\": \"1\",\n        \"area\": null,\n        \"street\": null,\n        \"pincode\": null,\n        \"apikey\": null,\n        \"balance\": 0,\n        \"referral_code\": null,\n        \"friends_code\": null,\n        \"fcm_id\": null,\n        \"latitude\": \"0\",\n        \"longitude\": \"0\",\n        \"status\": 0,\n        \"created_at\": \"2021-05-09T12:07:53.000000Z\",\n        \"deleted_at\": null,\n        \"updated_at\": \"2021-05-09T12:07:53.000000Z\",\n        \"otp\": null,\n        \"type\": null,\n        \"token\": null,\n        \"score\": null,\n        \"badge\": null,\n        \"niveau\": 10,\n        \"last_activity\": null\n    },\n    \"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTYyMDU2MjE3MSwiZXhwIjoxNjUxNjY2MTcxLCJuYmYiOjE2MjA1NjIxNzEsImp0aSI6IjR1b3g3R1VZVVJ0OUFjaHQiLCJzdWIiOjExMywicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSIsImFwcCI6InBoYXJtYWNpZSIsImF1dGV1ciI6ImNvdW5kaWEifQ.Atxqp-MlWc4lFT5zgDVK5-W8Uh5FF3it0U1mCZZPALY\",\n    \"token_type\": \"bearer\",\n    \"expires_in\": 31104000,\n    \"issue_date\": \"2021-05-09 12:09:31\",\n    \"expires_in_date\": \"2022-05-04 12:09:31\",\n    \"nbf\": 1620562171,\n    \"payload\": {\n        \"iss\": \"http://127.0.0.1:8000/api/auth/login\",\n        \"iat\": 1620562171,\n        \"exp\": 1651666171,\n        \"nbf\": 1620562171,\n        \"jti\": \"4uox7GUYURt9Acht\",\n        \"sub\": 113,\n        \"prv\": \"87e0af1ef9fd15812fdec97153a14e0b047546aa\",\n        \"app\": \"pharmacie\",\n        \"auteur\": \"coundia\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "{{host}}api/users",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"mobile\":\"v1\",\r\n    \"name\":\"coundia\",\r\n    \"password\":\"passer\",\r\n    \"email\":\"papa@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://www.pharmacie.palmadeco.com/api/users",
+							"protocol": "http",
+							"host": [
+								"www",
+								"pharmacie",
+								"palmadeco",
+								"com"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "{{host}}api/users",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"mobile\":\"v1\",\r\n    \"name\":\"coundia\",\r\n    \"password\":\"passer\",\r\n    \"email\":\"papa@gmail.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}api/users",
+									"host": [
+										"{{host}}api"
+									],
+									"path": [
+										"users"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 09 May 2021 12:07:53 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 09 May 2021 12:07:53 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.4.0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"data\": {\n        \"id\": 113,\n        \"name\": \"coundia\",\n        \"email\": \"papa@gmail.com\",\n        \"country_code\": \"91\",\n        \"mobile\": \"v1\",\n        \"dob\": null,\n        \"city\": \"1\",\n        \"area\": null,\n        \"street\": null,\n        \"pincode\": null,\n        \"apikey\": null,\n        \"balance\": 0,\n        \"referral_code\": null,\n        \"friends_code\": null,\n        \"fcm_id\": null,\n        \"latitude\": \"0\",\n        \"longitude\": \"0\",\n        \"password\": \"$2y$10$9XKtLRJqDuqeA0GEsErciug/eES576S8/I.RNsJWoLygb5Q6v9o.6\",\n        \"status\": 0,\n        \"created_at\": \"2021-05-09T12:07:53.000000Z\",\n        \"deleted_at\": null,\n        \"updated_at\": \"2021-05-09T12:07:53.000000Z\",\n        \"otp\": null,\n        \"type\": null,\n        \"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC91c2VycyIsImlhdCI6MTYyMDU2MjA3MywiZXhwIjoxNjIwNTY1NjczLCJuYmYiOjE2MjA1NjIwNzMsImp0aSI6IjJmeGJuQ0JLcGVoMnczazQiLCJzdWIiOjExMywicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSIsImFwcCI6InBoYXJtYWNpZSIsImF1dGV1ciI6ImNvdW5kaWEifQ.2atJWOv-TdYh_IUA6R5vbSpCDR5m8ztNqsWU1RG-_PY\",\n        \"score\": null,\n        \"badge\": null,\n        \"niveau\": 10,\n        \"last_activity\": null\n    },\n    \"message\": \"Users saved successfully\"\n}"
+						}
+					]
+				},
+				{
+					"name": "{{host}}api/auth/me",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user\":\"coundia\",\r\n    \"passord\":\"passer\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://www.pharmacie.palmadeco.com/api/auth/me",
+							"protocol": "http",
+							"host": [
+								"www",
+								"pharmacie",
+								"palmadeco",
+								"com"
+							],
+							"path": [
+								"api",
+								"auth",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{host}}api/auth/logout",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user\":\"coundia\",\r\n    \"passord\":\"passer\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://www.pharmacie.palmadeco.com/api/auth/logout",
+							"protocol": "http",
+							"host": [
+								"www",
+								"pharmacie",
+								"palmadeco",
+								"com"
+							],
+							"path": [
+								"api",
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "{{host}}api/hello",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://www.pharmacie.palmadeco.com/api/hello",
+					"protocol": "http",
+					"host": [
+						"www",
+						"pharmacie",
+						"palmadeco",
+						"com"
+					],
+					"path": [
+						"api",
+						"hello"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{host}}api/products",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://www.pharmacie.palmadeco.com/api/products",
+					"protocol": "http",
+					"host": [
+						"www",
+						"pharmacie",
+						"palmadeco",
+						"com"
+					],
+					"path": [
+						"api",
+						"products"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

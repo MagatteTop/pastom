@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {
   Event,
   Router,
@@ -7,17 +7,19 @@ import {
   RouterEvent
 } from '@angular/router';
 import { PlatformLocation } from '@angular/common';
+import {AuthService} from "./services/auth.service";
+import {ROUTES} from "./layout/sidebar/sidebar-items";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements  OnInit{
   currentUrl: string;
   showLoadingIndicatior = true;
 
-  constructor(public _router: Router, location: PlatformLocation) {
+  constructor(public _router: Router,public authService: AuthService, location: PlatformLocation) {
     this._router.events.subscribe((routerEvent: Event) => {
       if (routerEvent instanceof NavigationStart) {
         this.showLoadingIndicatior = true;
@@ -33,5 +35,16 @@ export class AppComponent {
       }
       window.scrollTo(0, 0);
     });
+  }
+
+  ngOnInit() {
+    let isloggedin: string;
+    let loggedUser:string;
+    isloggedin = localStorage.getItem('isloggedIn');
+    loggedUser = localStorage.getItem('loggedUser');
+    if (isloggedin!=="true" || !loggedUser)
+      this._router.navigate(['/authentication/signin']);
+    else
+      this.authService.setLoggedUserFromLocalStorage(loggedUser);
   }
 }

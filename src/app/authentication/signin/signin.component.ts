@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {first} from "rxjs/operators";
+import {User} from "../../model/User";
+import {AuthService} from "../../services/auth.service";
+import Swal from "sweetalert2";
 
 declare const $: any;
 
@@ -14,28 +18,31 @@ export class SigninComponent implements OnInit {
   submitted = false;
   returnUrl: string;
   hide = true;
+  loading = false;
+  error = '';
+  user = new User();
 
-  constructor(
+  constructor(private authService : AuthService,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
-    private router: Router
-  ) {}
+    private router: Router,
+  ){}
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
-      username: [''],
-      password: ['']
+      name: ['', Validators.required],
+      password: ['', Validators.required]
     });
-
     // get return url from route parameters or default to '/'
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/';
 
-    //    [Focus input] * /
+    // [Focus input] * /
     $('.input100').each(function() {
       $(this).on('blur', function() {
         if (
           $(this)
             .val()
+            // tslint:disable-next-line:triple-equals
             .trim() != ''
         ) {
           $(this).addClass('has-val');
@@ -45,18 +52,20 @@ export class SigninComponent implements OnInit {
       });
     });
   }
+  // convenience getter for easy access to form fields
   get f() {
     return this.loginForm.controls;
   }
 
-  onSubmit() {
-    this.submitted = true;
-
-    // stop here if form is invalid
-    if (this.loginForm.invalid) {
-      return;
-    } else {
-      this.router.navigate(['/dashboard/main']);
-    }
+  onLoggedin()
+  {
+     console.log(this.user);
+    this.authService.getUserFromDB(this.user.name).subscribe((usr:User)=>{
+      if(usr.password===this.user.password) {
+        this.authService.signIn(usr);
+        this.router.navigate(['/']);
+      }
+      else this.error='1';
+      },(err)=>console.log(err));
   }
 }

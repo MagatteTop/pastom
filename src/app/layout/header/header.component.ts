@@ -1,4 +1,5 @@
 import { DOCUMENT } from '@angular/common';
+
 import {
   Component,
   Inject,
@@ -9,6 +10,8 @@ import {
 } from '@angular/core';
 import { RightSidebarService } from '../../services/rightsidebar.service';
 import { WINDOW } from '../../services/window.service';
+import {Router} from "@angular/router";
+import {AuthService} from "../../services/auth.service";
 
 const document: any = window.document;
 
@@ -19,15 +22,19 @@ const document: any = window.document;
 })
 export class HeaderComponent implements OnInit {
   isNavbarShow: boolean;
-
   constructor(
-    @Inject(DOCUMENT) private document: Document,
+    public authService: AuthService,
+    // tslint:disable-next-line:no-shadowed-variable
+    @Inject(DOCUMENT) public document: Document,
     @Inject(WINDOW) private window: Window,
     private renderer: Renderer2,
     public elementRef: ElementRef,
-    private dataService: RightSidebarService
-  ) {}
+    private dataService: RightSidebarService,
+    private router: Router,
+  ) {
+  }
 
+  // tslint:disable-next-line:ban-types
   notifications: Object[] = [
     {
       userImg: 'assets/images/user/user1.jpg',
@@ -89,10 +96,18 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.setStartupStyles();
+    let isloggedin: string;
+    let loggedUser:string;
+    isloggedin = localStorage.getItem('isloggedIn');
+    loggedUser = localStorage.getItem('loggedUser');
+    if (isloggedin!=="true" || !loggedUser)
+      this.router.navigate(['/authentication/signin']);
+    else
+      this.authService.setLoggedUserFromLocalStorage(loggedUser);
   }
 
   setStartupStyles() {
-    //set theme on startup
+    // set theme on startup
     if (localStorage.getItem('theme')) {
       this.renderer.removeClass(this.document.body, 'dark');
       this.renderer.removeClass(this.document.body, 'light');
@@ -174,5 +189,9 @@ export class HeaderComponent implements OnInit {
       (this.dataService.currentStatus._isScalar = !this.dataService
         .currentStatus._isScalar)
     );
+  }
+  onLogout(){
+    this.authService.logout();
+
   }
 }
