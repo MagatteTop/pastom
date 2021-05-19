@@ -1,7 +1,11 @@
 <div class="limiter">
   <div class="container-login100">
     <div class="wrap-login100">
-      <form class="login100-form validate-form">
+      <form class="login100-form validate-form"  *ngIf="!isLoggedIn"
+            name="form"
+            (ngSubmit)="f.form.valid && onSubmit()"
+            #f="ngForm"
+            novalidate>
         <span class="login100-form-title pb-5">
           Login
         </span>
@@ -9,8 +13,15 @@
           <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
             <mat-form-field class="example-full-width" appearance="outline">
               <mat-label for="name">Username</mat-label>
-              <input matInput name="name" class="form-control"   [(ngModel)]="user.name"/>
+              <input matInput name="name" class="form-control"   [(ngModel)]="form.name" required #name="ngModel"/>
               <mat-icon matSuffix>face</mat-icon>
+              <div
+                class="alert alert-danger"
+                role="alert"
+                *ngIf="f.submitted && name.invalid"
+              >
+                Username is required!
+              </div>
             </mat-form-field>
           </div>
         </div>
@@ -18,8 +29,14 @@
           <div class="col-xl-12col-lg-12 col-md-12 col-sm-12 mb-2">
             <mat-form-field class="example-full-width" appearance="outline">
               <mat-label>Password</mat-label>
-              <input matInput type="password" name="password" class="form-control" [(ngModel)]="user.password"  />
+              <input matInput type="password" name="password" class="form-control" [(ngModel)]="form.password" required #password="ngModel"/>
               <mat-icon matSuffix>vpn_key</mat-icon>
+              <div
+                class="alert alert-danger"
+                role="alert"
+                *ngIf="f.submitted && password.invalid">
+                <div *ngIf="password.errors.required">Password is required</div>
+              </div>
             </mat-form-field>
           </div>
         </div>
@@ -35,9 +52,14 @@
           <div>
             <a class="txt1" routerLink="/authentication/forgot-password">Forgot Password?</a>
           </div>
+          <div class="form-group">
+            <div class="alert alert-danger" role="alert" *ngIf="f.submitted && isLoginFailed">
+              Login failed: {{ errorMessage }}
+            </div>
+          </div>
         </div>
         <div  routerLinkActive="active" class="container-login100-form-btn">
-          <button [disabled]="loading" mat-flat-button color="primary" type="button" class="login100-form-btn" (click)="onLoggedin()">
+          <button [disabled]="loading" mat-flat-button color="primary" type="button" class="login100-form-btn">
             <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
             Connexion
           </button>
@@ -59,6 +81,7 @@
           </a>
         </div>
       </form>
+
       <div class="login100-more" style="background-image: url('assets/images/pages/bg-01.png');">
       </div>
     </div>

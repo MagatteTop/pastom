@@ -4,8 +4,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {first} from "rxjs/operators";
 import {User} from "../../model/User";
 import {AuthService} from "../../services/auth.service";
+import {TokenStorageService} from "../../services/token-storage.service";
 import Swal from "sweetalert2";
-
 declare const $: any;
 
 @Component({
@@ -14,6 +14,12 @@ declare const $: any;
   styleUrls: ['./signin.component.scss']
 })
 export class SigninComponent implements OnInit {
+  form: any = {};
+  isLoggedIn = false;
+  isLoginFailed = false;
+  errorMessage = '';
+  // roles: string[] = [];
+
   loginForm: FormGroup;
   submitted = false;
   returnUrl: string;
@@ -23,12 +29,18 @@ export class SigninComponent implements OnInit {
   user = new User();
 
   constructor(private authService : AuthService,
-    private formBuilder: FormBuilder,
-    private route: ActivatedRoute,
-    private router: Router,
+              private tokenStorage: TokenStorageService,
+              private formBuilder: FormBuilder,
+              private route: ActivatedRoute,
+              private router: Router,
   ){}
 
   ngOnInit() {
+    if (this.tokenStorage.getToken()) {
+      this.isLoggedIn = true;
+    //  this.roles = this.tokenStorage.getUser().roles;
+    }
+
     this.loginForm = this.formBuilder.group({
       name: ['', Validators.required],
       password: ['', Validators.required]
@@ -57,15 +69,35 @@ export class SigninComponent implements OnInit {
     return this.loginForm.controls;
   }
 
-  onLoggedin()
-  {
-     console.log(this.user);
-    this.authService.getUserFromDB(this.user.name).subscribe((usr:User)=>{
-      if(usr.password===this.user.password) {
-        this.authService.signIn(usr);
-        this.router.navigate(['/']);
+  // onLoggedin()
+  // {
+  //    console.log(this.user);
+  //   this.authService.getUserFromDB(this.user.name).subscribe((usr:User)=>{
+  //     if(usr.password===this.user.password) {
+  //       this.authService.signIn(usr);
+  //       this.router.navigate(['/']);
+  //     }
+  //     else this.error='1';
+  //     },(err)=>console.log(err));
+  // }
+  onSubmit(): void {
+    this.authService.login(this.form).subscribe(
+      data => {
+        this.tokenStorage.saveToken(data.accessToken);
+        this.tokenStorage.saveUser(data);
+
+        this.isLoginFailed = false;
+        this.isLoggedIn = true;
+     //    this.roles = this.tokenStorage.getUser().roles;
+    //    this.reloadPage();
+      },
+      err => {
+        this.errorMessage = err.error.message;
+        this.isLoginFailed = true;
       }
-      else this.error='1';
-      },(err)=>console.log(err));
+    );
+  }
+  reloadPage(): void {
+    window.location.reload();
   }
 }

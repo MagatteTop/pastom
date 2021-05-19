@@ -96,14 +96,14 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.setStartupStyles();
-    let isloggedin: string;
-    let loggedUser:string;
-    isloggedin = localStorage.getItem('isloggedIn');
-    loggedUser = localStorage.getItem('loggedUser');
-    if (isloggedin!=="true" || !loggedUser)
-      this.router.navigate(['/authentication/signin']);
-    else
-      this.authService.setLoggedUserFromLocalStorage(loggedUser);
+    // let isloggedin: string;
+    // let loggedUser:string;
+    // isloggedin = localStorage.getItem('isloggedIn');
+    // loggedUser = localStorage.getItem('loggedUser');
+    // if (isloggedin!=="true" || !loggedUser)
+    //   this.router.navigate(['/authentication/signin']);
+    // else
+    //   this.authService.setLoggedUserFromLocalStorage(loggedUser);
   }
 
   setStartupStyles() {
@@ -191,7 +191,6 @@ export class HeaderComponent implements OnInit {
     );
   }
   onLogout(){
-    this.authService.logout();
-
+//    this.authService.logout();
   }
 }

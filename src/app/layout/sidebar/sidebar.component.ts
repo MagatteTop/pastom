@@ -20,8 +20,8 @@ declare const Waves: any;
 })
 export class SidebarComponent implements OnInit {
   public sidebarItems: any[];
-  showMenu: string = '';
-  showSubMenu: string = '';
+  showMenu = '';
+  showSubMenu = '';
   public innerHeight: any;
   public bodyTag: any;
   listMaxHeight: string;
@@ -38,8 +38,7 @@ export class SidebarComponent implements OnInit {
     public elementRef: ElementRef
   ) {}
   onLogout(){
-    this.authService.logout();
-
+//    this.authService.logout();
   }
   @HostListener('window:resize', ['$event'])
   windowResizecall(event) {
@@ -79,14 +78,14 @@ export class SidebarComponent implements OnInit {
     this.sidebarItems = ROUTES.filter(sidebarItem => sidebarItem);
     this.initLeftSidebar();
     this.bodyTag = this.document.body;
-    let isloggedin: string;
-    let loggedUser:string;
-    isloggedin = localStorage.getItem('isloggedIn');
-    loggedUser = localStorage.getItem('loggedUser');
-    if (isloggedin!=="true" || !loggedUser)
-      this.router.navigate(['/authentication/signin']);
-    else
-      this.authService.setLoggedUserFromLocalStorage(loggedUser);
+    // let isloggedin: string;
+    // let loggedUser:string;
+    // isloggedin = localStorage.getItem('isloggedIn');
+    // loggedUser = localStorage.getItem('loggedUser');
+    // if (isloggedin!=="true" || !loggedUser)
+    //   this.router.navigate(['/authentication/signin']);
+   // else
+  //    this.authService.setLoggedUserFromLocalStorage(loggedUser);
   }
 
   initLeftSidebar() {
