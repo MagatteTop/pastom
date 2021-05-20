@@ -1,7 +1,7 @@
 <div class="limiter">
   <div class="container-login100">
     <div class="wrap-login100">
-      <form class="login100-form validate-form"  *ngIf="!isLoggedIn"
+      <form class="login100-form validate-form"
             name="form"
             (ngSubmit)="f.form.valid && onSubmit()"
             #f="ngForm"
@@ -70,7 +70,7 @@
           </div>
         </div>
         <div  routerLinkActive="active" class="container-login100-form-btn">
-          <button  mat-flat-button color="primary" type="button" class="login100-form-btn">
+          <button  mat-flat-button color="primary" type="submit" class="login100-form-btn">
             Connexion
           </button>
           <div
@@ -97,9 +97,9 @@
           </a>
         </div>
       </form>
+
       <div class="alert alert-success" *ngIf="isLoggedIn">
-        <!--      Logged in as {{ roles }}.-->
-        <h2>bienevenue</h2>
+           Logged in as {{ form.name }}
       </div>
       <div class="login100-more" style="background-image: url('assets/images/pages/bg-01.png');">
       </div>

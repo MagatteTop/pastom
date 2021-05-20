@@ -59,7 +59,7 @@
 <!--                    </ul>-->
 <!--                </li>-->
                 <!-- #END# Notifications-->
-              <ul class="navbar-nav ml-auto"  *ngIf="!isLoggedIn" >
+              <ul class="navbar-nav ml-auto" >
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
                     Connexion
@@ -89,8 +89,8 @@
 <!--                                    </a>-->
 <!--                                </li>-->
 <!--                                <li>-->
-                                  <a class="dropdown-item" routerLink = "/authentication/signin">Login</a>
-                                  <a class="dropdown-item"  (click) = "onLogout()">Logout</a>
+                                  <a *ngIf="!isLoggedIn" class="dropdown-item" routerLink = "/authentication/signin">Login</a>
+                                  <a *ngIf="isLoggedIn" class="dropdown-item"  (click) = "onLogout()">Logout</a>
                                   <a class="dropdown-item" href="#">Profile</a>
                   </div>
 

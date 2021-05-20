@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {first} from "rxjs/operators";
-import {User} from "../../model/User";
+// import {User} from "../../model/User";
 import {AuthService} from "../../services/auth.service";
 import {TokenStorageService} from "../../services/token-storage.service";
 import Swal from "sweetalert2";
@@ -26,7 +26,7 @@ export class SigninComponent implements OnInit {
    hide = true;
   loading = false;
  error = '';
-  user = new User();
+ // user = new User();
 
   constructor(private authService : AuthService,
               private tokenStorage: TokenStorageService,
