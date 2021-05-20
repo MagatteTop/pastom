@@ -12,6 +12,7 @@ import { RightSidebarService } from '../../services/rightsidebar.service';
 import { WINDOW } from '../../services/window.service';
 import {Router} from "@angular/router";
 import {AuthService} from "../../services/auth.service";
+import {TokenStorageService} from "../../services/token-storage.service";
 
 const document: any = window.document;
 
@@ -22,8 +23,12 @@ const document: any = window.document;
 })
 export class HeaderComponent implements OnInit {
   isNavbarShow: boolean;
+  isLoggedIn = false;
+  name: string;
+
   constructor(
     public authService: AuthService,
+    private tokenStorageService: TokenStorageService,
     // tslint:disable-next-line:no-shadowed-variable
     @Inject(DOCUMENT) public document: Document,
     @Inject(WINDOW) private window: Window,
@@ -104,6 +109,16 @@ export class HeaderComponent implements OnInit {
     //   this.router.navigate(['/authentication/signin']);
     // else
     //   this.authService.setLoggedUserFromLocalStorage(loggedUser);
+    this.isLoggedIn = !!this.tokenStorageService.getToken();
+    if (this.isLoggedIn) {
+      // const user = this.tokenStorageService.getUser();
+      //  this.roles = user.roles;
+      // this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
+      // this.showModeratorBoard = this.roles.includes('ROLE_MODERATOR');
+      // this.name = user.name;
+      console.log('connexxxionn okkkk')
+    }
+
   }
 
   setStartupStyles() {
@@ -190,6 +205,11 @@ export class HeaderComponent implements OnInit {
         .currentStatus._isScalar)
     );
   }
+  logout(): void {
+    this.tokenStorageService.signOut();
+    window.location.reload();
+  }
+
   onLogout(){
 //    this.authService.logout();
   }

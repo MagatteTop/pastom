@@ -17,18 +17,16 @@ import {TokenStorageService} from "./services/token-storage.service";
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements  OnInit{
-  private roles: string[];
-  isLoggedIn = false;
-  showAdminBoard = false;
-  showModeratorBoard = false;
+  // private roles: string[];
+//  isLoggedIn = false;
+ // showAdminBoard = false;
+ // showModeratorBoard = false;
   name: string;
 
-  currentUrl: string;
+   currentUrl: string;
   showLoadingIndicatior = true;
 
   constructor(public _router: Router,
-              public authService: AuthService,
-              private tokenStorageService: TokenStorageService,
               location: PlatformLocation) {
     // this._router.events.subscribe((routerEvent: Event) => {
     //   if (routerEvent instanceof NavigationStart) {
@@ -56,19 +54,20 @@ export class AppComponent implements  OnInit{
     //   this._router.navigate(['/authentication/signin']);
     // else
     //   this.authService.setLoggedUserFromLocalStorage(loggedUser);
-    this.isLoggedIn = !!this.tokenStorageService.getToken();
+ //   this.isLoggedIn = !!this.tokenStorageService.getToken();
 
-    if (this.isLoggedIn) {
-      const user = this.tokenStorageService.getUser();
-      //  this.roles = user.roles;
-      // this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
-      // this.showModeratorBoard = this.roles.includes('ROLE_MODERATOR');
-      this.name = user.name;
-    }
+    // if (this.isLoggedIn) {
+    //  // const user = this.tokenStorageService.getUser();
+    //   //  this.roles = user.roles;
+    //   // this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
+    //   // this.showModeratorBoard = this.roles.includes('ROLE_MODERATOR');
+    //   // this.name = user.name;
+    //   console.log('connecter okkkk')
+    // }
   }
 
-  logout(): void {
-    this.tokenStorageService.signOut();
-    window.location.reload();
-  }
+  // logout(): void {
+  //   this.tokenStorageService.signOut();
+  //   window.location.reload();
+  // }
 }

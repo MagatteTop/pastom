@@ -2,19 +2,21 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {ForbiddenComponent} from "./forbidden/forbidden.component";
 import {LayoutGuard} from "./layout.guard";
+import {LoginComponent} from "./login/login.component";
 const routes: Routes = [
+  { path: 'login', component: LoginComponent },
   {
-    path: 'dashboard', canActivate:[LayoutGuard],
+    path: 'dashboard',
     loadChildren: () =>
       import('./dashboard/dashboard.module').then(m => m.DashboardModule)
   },
   {
-    path: 'email', canActivate:[LayoutGuard],
+    path: 'email',
     loadChildren: () => import('./email/email.module').then(m => m.EmailModule)
   },
 
   {
-    path: 'apps', canActivate:[LayoutGuard],
+    path: 'apps',
     loadChildren: () => import('./apps/apps.module').then(m => m.AppsModule)
   },
   {
@@ -71,7 +73,7 @@ const routes: Routes = [
   },
   {path:  'forbidden', component: ForbiddenComponent},
   {
-    path: '', canActivate:[LayoutGuard],
+    path: '',
     redirectTo: 'dashboard',
     pathMatch: 'full'
   }

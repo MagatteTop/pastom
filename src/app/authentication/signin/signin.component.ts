@@ -20,33 +20,32 @@ export class SigninComponent implements OnInit {
   errorMessage = '';
   // roles: string[] = [];
 
-  loginForm: FormGroup;
-  submitted = false;
+ loginForm: FormGroup;
+//  submitted = false;
   returnUrl: string;
-  hide = true;
+   hide = true;
   loading = false;
-  error = '';
+ error = '';
   user = new User();
 
   constructor(private authService : AuthService,
               private tokenStorage: TokenStorageService,
               private formBuilder: FormBuilder,
               private route: ActivatedRoute,
-              private router: Router,
   ){}
 
-  ngOnInit() {
+  ngOnInit():void {
     if (this.tokenStorage.getToken()) {
       this.isLoggedIn = true;
     //  this.roles = this.tokenStorage.getUser().roles;
     }
 
-    this.loginForm = this.formBuilder.group({
-      name: ['', Validators.required],
-      password: ['', Validators.required]
+     this.loginForm = this.formBuilder.group({
+       name: ['', Validators.required],
+       password: ['', Validators.required]
     });
-    // get return url from route parameters or default to '/'
-    this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/';
+     // get return url from route parameters or default to '/'
+     this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/';
 
     // [Focus input] * /
     $('.input100').each(function() {
@@ -68,28 +67,16 @@ export class SigninComponent implements OnInit {
   get f() {
     return this.loginForm.controls;
   }
-
-  // onLoggedin()
-  // {
-  //    console.log(this.user);
-  //   this.authService.getUserFromDB(this.user.name).subscribe((usr:User)=>{
-  //     if(usr.password===this.user.password) {
-  //       this.authService.signIn(usr);
-  //       this.router.navigate(['/']);
-  //     }
-  //     else this.error='1';
-  //     },(err)=>console.log(err));
-  // }
   onSubmit(): void {
     this.authService.login(this.form).subscribe(
       data => {
         this.tokenStorage.saveToken(data.accessToken);
-        this.tokenStorage.saveUser(data);
+        // this.tokenStorage.saveUser(data);
 
         this.isLoginFailed = false;
         this.isLoggedIn = true;
      //    this.roles = this.tokenStorage.getUser().roles;
-    //    this.reloadPage();
+       this.reloadPage();
       },
       err => {
         this.errorMessage = err.error.message;

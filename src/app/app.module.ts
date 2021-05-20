@@ -46,6 +46,8 @@ import {
 import {ConfigComponent} from "./config/config.component";
 import {RouterModule} from "@angular/router";
 import { ForbiddenComponent } from './forbidden/forbidden.component';
+import {authInterceptorProviders} from "../helpers/auth.interceptor";
+import { LoginComponent } from './login/login.component';
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
   wheelPropagation: false
@@ -55,6 +57,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   declarations: [
     AppComponent,
     HeaderComponent,
+    LoginComponent,
     PageLoaderComponent,
     SidebarComponent,
     RightSidebarComponent,
@@ -62,7 +65,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     DialogformComponent,
     BottomSheetOverviewExampleSheet,
     ConfigComponent,
-    ForbiddenComponent
+    ForbiddenComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -93,7 +97,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
       apiKey: 'YOUR API KEY'
     })
   ],
-  providers: [
+  providers: [authInterceptorProviders,
     { provide: LocationStrategy, useClass: HashLocationStrategy },
     {
       provide: PERFECT_SCROLLBAR_CONFIG,
