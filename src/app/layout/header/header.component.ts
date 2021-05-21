@@ -24,6 +24,8 @@ const document: any = window.document;
 export class HeaderComponent implements OnInit {
   isNavbarShow: boolean;
   isLoggedIn = false;
+  showAdminBoard = false;
+  showModeratorBoard = false;
   name: string;
 
   constructor(
@@ -111,12 +113,13 @@ export class HeaderComponent implements OnInit {
     //   this.authService.setLoggedUserFromLocalStorage(loggedUser);
     this.isLoggedIn = !!this.tokenStorageService.getToken();
     if (this.isLoggedIn) {
-      // const user = this.tokenStorageService.getUser();
-      //  this.roles = user.roles;
-      // this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
-      // this.showModeratorBoard = this.roles.includes('ROLE_MODERATOR');
-      // this.name = user.name;
-      console.log('connexxxionn okkkk')
+      const user = this.tokenStorageService.getUser();
+     //  this.roles = user.roles;
+    this.showAdminBoard = true;
+     this.router.navigate(['dashboard/main']);
+     //  this.showModeratorBoard = this.roles.includes('ROLE_MODERATOR');
+      this.name = user.name;
+      console.log('connexxxionn okkkk '+this.name)
     }
 
   }

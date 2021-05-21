@@ -37,9 +37,9 @@ export class SigninComponent implements OnInit {
   ngOnInit():void {
     if (this.tokenStorage.getToken()) {
       this.isLoggedIn = true;
+      console.log("se connecter");
     //  this.roles = this.tokenStorage.getUser().roles;
     }
-
      this.loginForm = this.formBuilder.group({
        name: ['', Validators.required],
        password: ['', Validators.required]
@@ -68,6 +68,7 @@ export class SigninComponent implements OnInit {
     return this.loginForm.controls;
   }
   onSubmit(): void {
+    console.log("submit");
     this.authService.login(this.form).subscribe(
       data => {
         this.tokenStorage.saveToken(data.accessToken);
@@ -75,8 +76,8 @@ export class SigninComponent implements OnInit {
 
         this.isLoginFailed = false;
         this.isLoggedIn = true;
-     //    this.roles = this.tokenStorage.getUser().roles;
-       this.reloadPage();
+        //    this.roles = this.tokenStorage.getUser().roles;
+        this.reloadPage();
       },
       err => {
         this.errorMessage = err.error.message;

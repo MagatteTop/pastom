@@ -10,7 +10,7 @@
                 <span class="logo-name">Lorax</span>
             </a>
         </div>
-        <div class="collapse navbar-collapse" id="navbar-collapse" >
+<!--        <div class="collapse navbar-collapse"  id="navbar-collapse" >-->
             <ul class="pull-left collapse-menu-icon">
                 <li>
                     <button mat-icon-button (click)="callSidemenuCollapse()" class="sidemenu-collapse">
@@ -58,12 +58,14 @@
 <!--                        </li>-->
 <!--                    </ul>-->
 <!--                </li>-->
+            </ul>
                 <!-- #END# Notifications-->
               <ul class="navbar-nav ml-auto" >
+<!--                <li> <a  class="nav-link">{{authService.loggedUser}}</a></li>-->
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
                     Connexion
-                  </a>
+                  </a></li>
                   <div class="dropdown-menu">
 <!--                <li> <a  class="nav-link">{{authService.loggedUser}}</a></li>-->
 <!--                <li class="dropdown user_profile">-->
@@ -74,7 +76,7 @@
 <!--                        <li class="body">-->
 <!--                            <ul class="user_dw_menu">-->
 <!--                                <li>-->
-<!--                                    <a href="#" onClick="return false;">-->
+<!--                                      <a href="#" onClick="return false;">-->
 <!--                                        <mat-icon aria-hidden="false" class="mr-2">person</mat-icon>Profile-->
 <!--                                    </a>-->
 <!--                                </li>-->
@@ -89,16 +91,25 @@
 <!--                                    </a>-->
 <!--                                </li>-->
 <!--                                <li>-->
-                                  <a *ngIf="!isLoggedIn" class="dropdown-item" routerLink = "/authentication/signin">Login</a>
-                                  <a *ngIf="isLoggedIn" class="dropdown-item"  (click) = "onLogout()">Logout</a>
-                                  <a class="dropdown-item" href="#">Profile</a>
+                                  <li class="nav-item" *ngIf="showAdminBoard">
+                                   <a href="/dashboard/main" class="nav-link" routerLink="dashboard/main">Admin dash</a>
+                                    </li>
+                                  <a  class="dropdown-item" routerLink = "/authentication/signin">Login</a>
+                   <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
+                      <li class="nav-item">
+                        <a href="/forbidden" class="nav-link" routerLink="profile">{{ name }}</a>
+                      </li>
+                      <li class="nav-item">
+                        <a href class="nav-link" (click)="logout()">LogOut</a>
+                      </li>
+                    </ul>
                   </div>
-
-                                </li>
+              </ul>
+<!--                                  <a class="dropdown-item" href="#">Profile</a>-->
+                  </div>
 
 <!--                            </ul>-->
 <!--                        </li>-->
-                    </ul>
 <!--                </li>-->
 <!--              </ul>-->
                 <!-- #END# Tasks -->
@@ -107,7 +118,5 @@
                         <mat-icon>settings</mat-icon>
                     </button>
                 </li>
-            </ul>
-        </div>
-    </div>
+<!--    </div>-->
 </nav>
